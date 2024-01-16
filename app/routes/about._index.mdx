@@ -1,0 +1,51 @@
+---
+meta:
+  - title: About IndieNotes
+  - name: description
+    content: IndieNotes is a simple note taking app
+componentData:
+  buttonText: Homepage
+---
+import CustomButton from './../components/CustomButton.tsx'
+import { useLoaderData } from "@remix-run/react";
+
+
+export const loader = async () => {
+  const posts = [
+    { title: 'My first post', slug: 'my-first-post' },
+    { title: 'My second post', slug: 'my-second-post' },
+    { title: 'My third post', slug: 'my-third-post' },
+    ]
+  return { posts };
+};
+
+
+
+export function ComponentUsingData() {
+  const { posts } = useLoaderData();
+  return posts.map(post => (
+    <div>
+      <h2>{post.title}</h2>
+      <p>{post.slug}</p>
+    </div>
+  ))
+}
+
+# Heading 1
+## Heading 2
+### Heading 3
+#### Heading 4
+
+
+<ComponentUsingData />
+
+<CustomButton title={attributes.componentData.buttonText} />
+
+# Heading 1
+## Heading 2
+### Heading 3
+#### Heading 4
+Normal text
+**Bold text**
+*Italic text*
+[Link](https://www.google.com)
